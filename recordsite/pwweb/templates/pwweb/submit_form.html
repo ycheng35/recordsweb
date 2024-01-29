@@ -1,0 +1,44 @@
+<h2>Customer and User Information</h2>
+<form action="{% url 'pwweb:create_record' %}" method="post">
+    {% csrf_token %}
+    <!-- Text input for Customer Name -->
+    <label for="Customer Name">Customer Name:</label>
+    <input type="text" id="customerName" name="customerName" required>
+    <br>
+
+    <!-- Text input for User Name -->
+    <label for="User Name">User Name:</label>
+    <input type="text" id="userName" name="userName" required>
+    <br>
+
+    <label for="Game Type">Game Type:</label>
+    <input type="text" id="gameType" name="gameType" required>
+    <br>
+
+    <label for="User Type">User Type:</label>
+    <input type="text" id="userType" name="userType" >
+    <br>
+
+    <label for="Is Challenger Rank">Is Challenger Rank:</label>
+    <input type="text" id="isChallengerRank" name="isChallengerRank" required>
+    <br>
+
+    <label for="Hourly Rate">Hourly Rate:</label>
+    <input type="text" id="hourlyRate" name="hourlyRate" required>
+    <br>
+
+    <label for="Work Hours">Work Hours:</label>
+    <input type="text" id="workHours" name="workHours" required>
+    <br>
+
+    <label for="Overtime Hours">Overtime Hours:</label>
+    <input type="text" id="overtimeHours" name="overtimeHours">
+    <br>
+
+    <label for="Notes">Notes:</label>
+    <input type="text" id="Notes" name="Notes">
+    <br>
+
+    <!-- Submit button -->
+    <input type="submit" value="Submit">
+</form>

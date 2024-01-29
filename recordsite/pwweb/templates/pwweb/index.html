@@ -1,0 +1,163 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blue Button Hyperlink</title>
+    <style>
+        .blue-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: blue;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .popup-form {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+    </style>
+    <script>
+        function openForm() {
+            var popupForm = document.getElementById('popupForm');
+            popupForm.style.display = 'block';
+        }
+
+        function closeForm() {
+            var popupForm = document.getElementById('popupForm');
+            popupForm.style.display = 'none';
+        }
+    </script>
+</head>
+
+<!-- Popup Form -->
+<!-- Blue Button with Click Event -->
+<!-- Popup Form -->
+<!-- Blue Button with Click Event -->
+<p><a href="#" class="blue-button" onclick="openForm()">报单申请</a></p>
+
+<!-- Popup Form (include submit_form.html) -->
+<div id="popupForm" class="popup-form">
+    <span class="close-button" onclick="closeForm()">&#10006;</span>
+    <form action="{% url 'pwweb:create_record' %}" method="post" style="width: 400px; padding: 20px;">
+        {% csrf_token %}
+        <!-- Text input for Customer Name -->
+        <label for="Customer Name">下单用户</label>
+        <input type="text" id="customerName" name="customerName" required style="width: 100%; padding: 10px; margin-bottom: 10px;">
+        <br>
+
+        <!-- Text input for User Name -->
+        <label for="User Name">接单陪玩</label>
+        <input type="text" id="userName" name="userName" required style="width: 100%; padding: 10px; margin-bottom: 10px;">
+        <br>
+
+        <label for="Game Type">选择项目类别</label>
+        <input type="text" id="gameType" name="gameType" required style="width: 100%; padding: 10px; margin-bottom: 10px;">
+        <br>
+
+        <label for="User Type">陪玩类型</label>
+        <input type="text" id="userType" name="userType" style="width: 100%; padding: 10px; margin-bottom: 10px;">
+        <br>
+
+        <label for="Is Challenger Rank">是否王者/FPS大神</label>
+        <select id="isChallengerRank" name="isChallengerRank" required style="width: 100%; padding: 10px; margin-bottom: 10px;">
+            <option value="yes">是 (Yes)</option>
+            <option value="no">否 (No)</option>
+        </select>
+        <br>
+
+        <label for="Hourly Rate">项目单价</label>
+        <input type="text" id="hourlyRate" name="hourlyRate" required style="width: 100%; padding: 10px; margin-bottom: 10px;">
+        <br>
+
+        <label for="Work Hours">项目时长</label>
+        <input type="text" id="workHours" name="workHours" required style="width: 100%; padding: 10px; margin-bottom: 10px;">
+        <br>
+
+        <label for="Overtime Hours">加班时长</label>
+        <input type="text" id="overtimeHours" name="overtimeHours" style="width: 100%; padding: 10px; margin-bottom: 10px;">
+        <br>
+
+        <label for="Notes">备注</label>
+        <input type="text" id="Notes" name="Notes" style="width: 100%; padding: 10px; margin-bottom: 10px;">
+        <br>
+
+        <!-- Submit button -->
+        <input type="submit" value="Submit" style="width: 100%; padding: 15px; font-size: 16px;">
+    </form>
+</div>
+
+<script>
+    function openForm() {
+        var popupForm = document.getElementById('popupForm');
+        popupForm.style.display = 'block';
+    }
+
+    function closeForm() {
+        var popupForm = document.getElementById('popupForm');
+        popupForm.style.display = 'none';
+    }
+</script>
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table with 8 Fields using CSS Grid</title>
+    <style>
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            border: 1px solid #ddd;
+        }
+
+        .grid-item {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .grid-header {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Work Records</h2>
+
+    <div class="grid-container">
+        <div class="grid-header">项目</div>
+        <div class="grid-header">用户</div>
+        <div class="grid-header">是否王者/FPS大神</div>
+        <div class="grid-header">实付($)</div>
+        <div class="grid-header">佣金比例</div>
+        <div class="grid-header">佣金</div>
+        <div class="grid-header">日期</div>
+        <div class="grid-header">审批状态</div>
+
+        {% if latest_record_list %}
+            {% for record in latest_record_list %}
+                <div class="grid-item">{{record.game_type}}</div>
+                <div class="grid-item">{{record.customer_name}}</div>
+                <div class="grid-item">{{record.is_challenger_rank}}</div>
+                <div class="grid-item">{{record.paid_amount}}</div>
+                <div class="grid-item">{{record.commission_rate}}</div>
+                <div class="grid-item">{{record.commision_amount}}</div>
+                <div class="grid-item">{{record.date}}</div>
+                <div class="grid-item">{{record.status}}</div>
+            {% endfor %}
+        {% endif %}
+    </div>
+</body>
+</html>
